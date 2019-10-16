@@ -1,0 +1,63 @@
+body{
+    margin:0px;
+    padding:0px;
+    background-color: rgb(240, 239, 239);
+    font-family: 'Mansalva', cursive;
+}
+
+header{
+    text-align: center;
+    margin-top:20px;
+    margin-bottom:50px;
+}
+
+.card{
+    border-radius:2%;
+}
+
+.card-body{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myBox{
+    border:1px dashed lightgray;
+    border-radius:5%;
+    width:90%;
+    height:300px;
+}
+
+.myBox h3{
+    padding:20px 30px;
+    text-align: center;
+    color:rgb(190, 190, 190);
+    font-size:1.3rem;
+}
+
+.textLeft{
+    align-self:flex-start;
+    margin-top:40px;
+    margin-left:10px;
+    font-size:2rem;
+}
+
+.line{
+    width:95%;
+	height:1px;
+    background:rgb(179, 179, 179);
+    margin:20px;
+}
+
+.btn{
+    margin-left:80px;
+    margin-right:80px;
+}
+
+.msgDiplay{
+	text-align:center;
+	color:gray;
+	font-size:1rem;
+	
+}
+
