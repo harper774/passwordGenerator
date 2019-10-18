@@ -12,13 +12,11 @@ var charset2 = "0123456789";//10
 var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30
 
 function generatePassword(isLength) {
-
-	if(isLength<8 || isLength>128){
+	this.L = isLength;
+	if(L<8 || L>128){
 		alert("Sorry! You password does not fit the requirement!");
 	}
 	else{
-		this.isLength = isLength;
-
 		var password = "";
 		//fix the first four characters in different charsets
 		//this is to make sure that we have at least one of each character group
@@ -28,7 +26,7 @@ function generatePassword(isLength) {
 		int3 = Math.floor(Math.random() * 30);
 		password = charset0[int0]+charset1[int1]+charset2[int2]+charset3[int3];
 
-		for (var i = 0, n = charset.length; i < isLength-4; ++i) {
+		for (var i = 0, n = charset.length; i < L-4; ++i) {
 			password += charset.charAt(Math.floor(Math.random() * n));
 		}
 		return password;
@@ -36,33 +34,33 @@ function generatePassword(isLength) {
 }
 
 function passwordCheck(userInput){
-	this.userInput = userInput;
-	var length = userInput.length;
+	this.user = userInput;
+	var length = user.length;
 	var score = 0;
 	
 	if(length<8 || length>128){
 		alert("Sorry! You password does not fit the requirement!");
-		return userInput;
+		return user;
 	}
-	if(userInput.match(/[a-z]/)){
+	if(user.match(/[a-z]/)){
 		score++;	
 	}
-	if(userInput.match(/[A-Z]/)){
+	if(user.match(/[A-Z]/)){
 		score++;	
 	}
-	if(userInput.match(/[0-9]/)){
+	if(user.match(/[0-9]/)){
 		score++;	
 	}
-	if(userInput.match(/[^a-zA-Z0-9]/)){
+	if(user.match(/[^a-zA-Z0-9]/)){
 		score++;	
 	}
 	
 	if(score > 3){
-		return userInput;
+		return user;
 	}
 	else{
 		alert("Sorry! You password does not fit the requirement!");
-		return userInput;
+		return user;
 	}
 	
 	/*if(length<8 || length>128){
