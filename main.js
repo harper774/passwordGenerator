@@ -142,5 +142,5 @@ btnCopy.addEventListener("click", function(e){
 	// console.log(document.execCommand("Copy"));
 	boxMsg.classList.add("msgDisplay");
 	boxMsg2.classList.add("msg2Display");
-	boxMsg2.innerHTML = "<strong>YOU HAVE SUCCESSFULLY COPIED THE PASSWORD TO YOUR COPYBOARD!</strong>";
+	boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
 });
