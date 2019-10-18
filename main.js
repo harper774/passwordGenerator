@@ -13,21 +13,26 @@ var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30
 
 function generatePassword(isLength) {
 
-	this.isLength = isLength;
-
-	var password = "";
-	//fix the first four characters in different charsets
-	//this is to make sure that we have at least one of each character group
-	int0 = Math.floor(Math.random() * 26);
-	int1 = Math.floor(Math.random() * 26);
-	int2 = Math.floor(Math.random() * 10);
-	int3 = Math.floor(Math.random() * 30);
-	password = charset0[int0]+charset1[int1]+charset2[int2]+charset3[int3];
-
-	for (var i = 0, n = charset.length; i < isLength-4; ++i) {
-		password += charset.charAt(Math.floor(Math.random() * n));
+	if(isLength<8 || isLength>128){
+		alert("Sorry! You password does not fit the requirement!");
 	}
-	return password;
+	else{
+		this.isLength = isLength;
+
+		var password = "";
+		//fix the first four characters in different charsets
+		//this is to make sure that we have at least one of each character group
+		int0 = Math.floor(Math.random() * 26);
+		int1 = Math.floor(Math.random() * 26);
+		int2 = Math.floor(Math.random() * 10);
+		int3 = Math.floor(Math.random() * 30);
+		password = charset0[int0]+charset1[int1]+charset2[int2]+charset3[int3];
+
+		for (var i = 0, n = charset.length; i < isLength-4; ++i) {
+			password += charset.charAt(Math.floor(Math.random() * n));
+		}
+		return password;
+	}
 }
 
 function passwordCheck(userInput){
@@ -36,7 +41,7 @@ function passwordCheck(userInput){
 	var score = 0;
 	
 	if(length<8 || length>128){
-		alert("Sorry! You password does not fit the requirement!");
+		alert("Sorry1! You password does not fit the requirement!");
 		return userInput;
 	}
 	if(userInput.match(/[a-z]+/)){
@@ -56,7 +61,7 @@ function passwordCheck(userInput){
 		return userInput;
 	}
 	else{
-		alert("Sorry! You password does not fit the requirement!");
+		alert("Sorry2! You password does not fit the requirement!");
 		return userInput;
 	}
 	
@@ -91,8 +96,6 @@ function passwordCheck(userInput){
 	}
 	}	
 	*/
-	
-
 }
 
 // function btnGen(isLength){
@@ -101,14 +104,18 @@ function passwordCheck(userInput){
 // 	boxMsg.innerHTML = generatePassword(isLength);
 // }
 
-/*var isAuto = confirm("Do you want to have a random password or using your own password?");*/
-
 if(isGen){
-	var isLength = prompt("Ok let me do this for you: what's the expected length of the password \(from 8 to 128\)?");	
-	var password = generatePassword(isLength);
-	var Message = document.getElementById("boxMsg");
-	Message.classList.add("msgDisplay");
-	Message.innerHTML = password;
+	isLength = prompt("Ok let me do this for you: what's the expected length of the password \(from 8 to 128\)?");	
+	console.log(isLength);
+	if(isLength === null){
+		alert("Ok then see you!");
+	}
+	else{
+		var password = generatePassword(isLength);
+		var Message = document.getElementById("boxMsg");
+		Message.classList.add("msgDisplay");
+		Message.innerHTML = password;
+	}
 }
 else{
 	var isSpecial = confirm("Ok please type in your own password and I will check it for you:");
@@ -119,11 +126,7 @@ else{
 		boxMsg.innerHTML = userPassword;
 	}
 	else{
-		var isLength = prompt("Ok let me do this for you: what's the expected length of the password \(from 8 to 128\)?");	
-		var password = generatePassword(isLength);
-		var Message = document.getElementById("boxMsg");
-		Message.classList.add("msgDisplay");
-		Message.innerHTML = password;
+		alert("Ok then see you!");
 	}
 }
 
@@ -141,8 +144,3 @@ btnCopy.addEventListener("click", function(e){
 	boxMsg2.classList.add("msg2Display");
 	boxMsg2.innerHTML = "<strong>YOU HAVE SUCCESSFULLY COPIED THE PASSWORD TO YOUR COPYBOARD!</strong>";
 });
-
-
-// console.log(isLength);
-
-// console.log(password);
