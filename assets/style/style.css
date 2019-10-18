@@ -2,7 +2,7 @@ body{
     margin:0px;
     padding:0px;
     background-color: rgb(240, 239, 239);
-    font-family: 'Mansalva', cursive;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 header{
@@ -25,13 +25,15 @@ header{
     border:1px dashed lightgray;
     border-radius:5%;
     width:90%;
-    height:300px;
+    height:max-content;
+    padding-bottom: 10px;
+    text-align:center;
 }
 
 .myBox h3{
     padding:20px 30px;
     text-align: center;
-    color:rgb(190, 190, 190);
+    color:rgb(158, 157, 157);
     font-size:1.3rem;
 }
 
@@ -42,6 +44,10 @@ header{
     font-size:2rem;
 }
 
+.textMsg{
+    margin:20px;
+}
+
 .line{
     width:95%;
 	height:1px;
@@ -50,14 +56,27 @@ header{
 }
 
 .btn{
-    margin-left:80px;
-    margin-right:80px;
+    margin:auto;
+    width:200px;
 }
 
-.msgDiplay{
+.passwordBox{
+    border:1px dotted lightgray;
+    border-radius:5%;
+    margin:20px 0px 10px 0px;
+    padding:10px;
+}
+
+.msgDisplay{
 	text-align:center;
 	color:gray;
-	font-size:1rem;
-	
+	font-size:2rem;	
+}
+
+.msg2Display{
+    margin-top:40px;
+	text-align:center;
+	color:rgb(158, 149, 150);
+	font-size:1rem;	
 }
 

@@ -8,33 +8,47 @@
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous">
     <link rel = "stylesheet" type = "text/css" href = "assets/style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     
     <title>This is a password generator by Harper</title>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Password Generator</h1>
-        </header>
 
-        <div class="card">
-            <div class="card-body">    
-                <h2 class="textLeft">Generate a Password</h2>
-                <div class="line"></div>
-
-                <div class="myBox">
-                    <h3>Your Secure Password</h3>
-					<div id = "boxMsg"></div>
-                </div>
-                <div class="line"></div>
-                <div class="myButton">
-                    <div class="row">
-                        <!-- <div class="col-sm-6"> -->
-                            <button class="btn btn-danger">Generate Password</button>
-                        <!-- </div>
-                        <div class="col-sm-6">                     -->
-                            <button class="btn btn-secondary">Copy to Clipboard</button>
-                        <!-- </div> -->
+        <div class="row">
+            <div class="col">
+                <header>
+                    <h1>Password Generator</h1>
+                </header>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">    
+                        <h2 class="textLeft">Generate a Password</h2>
+                        <p class = textMsg><em>The password should have at least one sepcial character,
+                            one numeric character, one lowercase character, and one 
+                            uppercase character.</em>
+                        </p>
+                        <div class="line"></div>
+        
+                        <div class="myBox">
+                            <h3>Your Secure Password is:</h3>
+                            <textarea class = "passwordBox"id = "boxMsg"></textarea>
+                            <div id = "boxMsg2"></div>
+                        </div>
+                        <div class="line"></div>
+                        
+                        <div class="row myButton">                   
+                            <div class="col-6 col-md-6 col-xl-6">
+                                <button class="btn btn-danger" id = "btnGen">Generate Password</button>
+                            </div>
+                            <div class="col-6 col-md-6 col-xl-6">                     
+                                <button class="btn btn-secondary btnCopy" id = "btnCopy">Copy to Clipboard</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
