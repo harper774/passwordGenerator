@@ -41,19 +41,19 @@ function passwordCheck(userInput){
 	var score = 0;
 	
 	if(length<8 || length>128){
-		alert("Sorry1! You password does not fit the requirement!");
+		alert("Sorry! You password does not fit the requirement!");
 		return userInput;
 	}
-	if(userInput.match(/[a-z]+/)){
+	if(userInput.match(/[a-z]/)){
 		score++;	
 	}
-	if(userInput.match(/[A-Z]+/)){
+	if(userInput.match(/[A-Z]/)){
 		score++;	
 	}
-	if(userInput.match(/[0-9]+/)){
+	if(userInput.match(/[0-9]/)){
 		score++;	
 	}
-	if(userInput.match(/[^a-zA-Z0-9]+/)){
+	if(userInput.match(/[^a-zA-Z0-9]/)){
 		score++;	
 	}
 	
@@ -61,7 +61,7 @@ function passwordCheck(userInput){
 		return userInput;
 	}
 	else{
-		alert("Sorry2! You password does not fit the requirement!");
+		alert("Sorry! You password does not fit the requirement!");
 		return userInput;
 	}
 	
