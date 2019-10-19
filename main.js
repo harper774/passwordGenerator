@@ -22,51 +22,156 @@ var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30
 function passwordForCheckBox(){
 	var password = "";
 	var i = 0;
+	var checkLow = 0;
+	var checkUpp = 0;
+	var checkNum = 0;
+	var checkSpe = 0;
 
 	if (lowerChar.checked){
-		var int0 = Math.floor(Math.random() * 26);
-		password += charset3[int0];
-		console.log(password);
-		i++
+		checkLow++;
+		console.log(checkLow);
+		i++;
 	}
 	if (upperChar.checked){
-		var int1 = Math.floor(Math.random() * 26);
-		password += charset3[int1];
-		console.log(password);
+		checkUpp++;
 		i++;
 	}
 	if (numericChar.checked){
-		var int2 = Math.floor(Math.random() * 10);
-		password += charset3[int2];
-		console.log(password);
+		checkNum++;
 		i++;
 	}
 	if (specialChar.checked){
-		var int3 = Math.floor(Math.random() * 30);
-		password += charset3[int3];
-		console.log(password);
+		checkSpe++;
 		i++;
 	}
 	return {
-		pw: password,
-		num:i
+		num:i,
+		checkLow: checkLow,
+		checkUpp: checkUpp,
+		checkNum: checkNum,
+		checkSpe: checkSpe
 	};
 }
 
+function genPassword(number,charsetType){
+	this.N = number;
+	this.C = charsetType;
+	var password = "";
+
+	switch (C){
+		case 0: 
+		for (var i = 0; i<N; i++){
+			password += charset0.charAt(Math.floor(Math.random() * 26));
+			console.log(password);
+		}
+		break;
+
+		case 1:
+		for (var i = 0; i<N; i++){
+			password += charset1.charAt(Math.floor(Math.random() * 26));
+			console.log(password);
+		}
+		break;
+
+		case 2:
+		for (var i = 0; i<N; i++){
+			password += charset2.charAt(Math.floor(Math.random() * 10));
+			console.log(password);
+		}
+		break;
+
+		case 3:
+		for (var i = 0; i<N; i++){
+			password += charset3.charAt(Math.floor(Math.random() * 30));
+			console.log(password);
+			console.log(typeof(password));
+		}
+		break;
+	}
+	console.log(typeof(password));
+	return password;
+
+}
+
 function generatePassword(isLength) {
-	var password = passwordForCheckBox().pw;
+	var password = "";
 	var num = passwordForCheckBox().num;
-	console.log(password);
+
 	console.log(num);
 	this.L = isLength;
-	if(L<8 || L>128){
+	if(L<8 || L>128 || num<1){
 		alert("Sorry! You length does not fit the requirement! Please re-enter another number between 8 and 128!");
 	}
-	else if (num<1){
-		alert("Sorry! You must tick at least one box!");
+	else {
+		console.log('hello');
+		console.log(passwordForCheckBox().checkLow);
+		switch (num){
+			case 1:
+			if(passwordForCheckBox().checkLow){
+				password = genPassword(L,0);
+				console.log("password");
+			}
+			else if(passwordForCheckBox().checkUpp){
+				password = genPassword(L,1);
+			}
+			else if(passwordForCheckBox().checkNum){
+				password = genPassword(L,2);
+			}
+			else{
+				password = genPassword(L,3);
+			}
+			break;
+
+			case 2:
+			if(passwordForCheckBox.checkLow){
+				if(passwordForCheckBox.checkUpp){
+
+				}
+				else if(passwordForCheckBox.checkNum){
+
+				}
+				else if(passwordForCheckBox.checkSpe){
+
+				}
+			}
+			else if (passwordForCheckBox.checkUpp){
+				if (passwordForCheckBox.checkNum){
+
+				}
+				else if (passwordForCheckBox.checkSpe){
+
+				}
+			}
+			else if (passwordForCheckBox.checkNum){
+				if(passwordForCheckBox.checkSpe){
+
+				}
+			}
+			break;
+
+			case 3:
+			if(!passwordForCheckBox.checkLow){
+
+			}
+			else if (!passwordForCheckBox.checkUpp){
+
+			}
+			else if (!passwordForCheckBox.checkNum){
+
+			}
+			else if (!passwordForCheckBox.checkSpe){
+
+			}
+			break;
+
+			case 4:
+			
+
+		}
 	}
-	else{
-		// var password = "";
+	return password;
+
+			// var password = "";
 		// //fix the first four characters in different charsets
 		// //this is to make sure that we have at least one of each character group
 		// int0 = Math.floor(Math.random() * 26);
@@ -74,11 +179,10 @@ function generatePassword(isLength) {
 		// int2 = Math.floor(Math.random() * 10);
 		// int3 = Math.floor(Math.random() * 30);
 		// password = charset0[int0]+charset1[int1]+charset2[int2]+charset3[int3];
-		for (var i = 0, n = charset.length; i < L-num; ++i) {
-			password += charset.charAt(Math.floor(Math.random() * n));
-		}
-		return password;
-	}
+		// for (var i = 0, n = charset.length; i < L-num; ++i) {
+		// 	password += charset.charAt(Math.floor(Math.random() * n));
+		// }
+		// return password;
 }
 
 function passwordCheck(userInput){
@@ -116,6 +220,7 @@ function passwordCheck(userInput){
 //when clicked, they will have different reactions
 
 btnGen.addEventListener("click", function(e){
+
 	boxMsg.classList.add("msgDisplay");
 	boxMsg.innerHTML = generatePassword(passwordLength.value);
 	console.log(passwordLength.value);
