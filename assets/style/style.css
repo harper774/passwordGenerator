@@ -90,6 +90,21 @@ header{
 	font-size:1rem;	
 }
 
+.checkBoxes{
+    padding:4%;
+}
+
+.btn{
+    margin-left:0px;
+
+}
+
+#passwordLength{
+    width:100px;
+    word-wrap: wrap;
+}
+
+
 @media screen and (max-width:640px){
     .btn{
         margin:10px 20px;

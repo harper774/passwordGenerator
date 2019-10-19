@@ -4,6 +4,13 @@ var btnGen = document.getElementById("btnGen");
 var btnCopy = document.getElementById("btnCopy");
 var boxMsg = document.getElementById("boxMsg");
 var boxMsg2 = document.getElementById("boxMsg2");
+var submit = document.getElementById("buttonSubmit");
+var specialChar = document.getElementById("defaultCheck1");
+var numericChar = document.getElementById("defaultCheck2");
+var upperChar = document.getElementById("defaultCheck3");
+var lowerChar = document.getElementById("defaultCheck4");
+var passwordLength = document.getElementById("passwordLength");
+
 
 var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~·!@#$%^&*()<>/?.,;:=-+-[]{}\|"//92
 var charset0 = "abcdefghijklmnopqrstuvwxyz";//26
@@ -62,45 +69,24 @@ function passwordCheck(userInput){
 		alert("Sorry! You password does not fit the requirement!");
 		return user;
 	}
-	
-	/*if(length<8 || length>128){
-		alert("1Sorry! You password does not fit the requirement!");	
-		return userInput;
-	}else{
-	
-	for (var i = 0; i < userInput.lenghth; i++){
-		for (var j = 0; j < charset0.lenghth; j++){
-			if(userInput[i] === charset0[j]){
-				console.log(userInput[i]);
-				score++;
-				continue;
-			}
-			else if(userInput[i] === charset1[j]){
-				score++;
-				continue;
-			}
-			else if(userInput[i] === charset2[j]){
-				score++;
-				continue;
-			}
-			else if(userInput[i] === charset2[j]){
-				score++;
-				continue;
-			}
-			else{
-				continue;
-			}
-		}
-	}
-	}	
-	*/
 }
 
-// function btnGen(isLength){
-// 	this.isLength = isLength
-// 	boxMsg.classList.add("msgDisplay");
-// 	boxMsg.innerHTML = generatePassword(isLength);
-// }
+//button for Gen and Copy
+
+btnGen.addEventListener("click", function(e){
+	boxMsg.classList.add("msgDisplay");
+	boxMsg.innerHTML = generatePassword(isLength);
+});
+
+btnCopy.addEventListener("click", function(e){
+	boxMsg.select();
+	document.execCommand("Copy");
+	boxMsg.classList.add("msgDisplay");
+	boxMsg2.classList.add("msg2Display");
+	boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
+});
+
+//Main process
 
 if(isGen){
 	isLength = prompt("Ok let me do this for you: what's the expected length of the password \(from 8 to 128\)?");	
@@ -128,17 +114,3 @@ else{
 	}
 }
 
-
-btnGen.addEventListener("click", function(e){
-	boxMsg.classList.add("msgDisplay");
-	boxMsg.innerHTML = generatePassword(isLength);
-});
-
-btnCopy.addEventListener("click", function(e){
-	boxMsg.select();
-	document.execCommand("Copy");
-	// console.log(document.execCommand("Copy"));
-	boxMsg.classList.add("msgDisplay");
-	boxMsg2.classList.add("msg2Display");
-	boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
-});

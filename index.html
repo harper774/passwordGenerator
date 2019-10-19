@@ -26,21 +26,63 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-body">    
-                        <h2 class="textLeft">Generate a Password</h2>
-                        <p class = textMsg><em>The password length should be between 8 and 128 and it should have at least one sepcial character,
-                            one numeric character, one lowercase character, and one 
-                            uppercase character.</em>
-                        </p>
-                        <div class="line"></div>
-        
-                        <div class="myBox">
-                            <h3>Your Secure Password is:</h3>
-                            <textarea class = "passwordBox"id = "boxMsg"></textarea>
-                            <div id = "boxMsg2"></div>
+                    <div class="card-body">  
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="textLeft">Generate a Password</h2>
+                                <p class = textMsg><em>
+                                    The password length should between 8 and 128. It 
+                                    should have at least one sepcial character,
+                                    one numeric character, one lowercase character, or one 
+                                    uppercase character. Please tick the boxes that you wanna have.
+                                    (at least one box must be ticked)</em>
+                                </p>
+
+                                <div class="checkBoxes">
+                                    <div class="form-check">
+                                        <label for="exampleInputPassword1">Password length</label>
+                                        <input id="passwordLength" placeholder="(8 - 128)">
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                        Special characters
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                        <label class="form-check-label" for="defaultCheck2">
+                                        Numeric characters
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                        <label class="form-check-label" for="defaultCheck3">
+                                        Uppercase characters
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                                        <label class="form-check-label" for="defaultCheck4">
+                                        Lowercase characters
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <button type="submit" class="btn btn-primary" id = "buttonSubmit">Submit</button>
+                                    </div>
+                                </div>
+
+                                <div class="line"></div>
+                
+                                <div class="myBox">
+                                    <h3>Your Secure Password is:</h3>
+                                    <textarea class = "passwordBox"id = "boxMsg"></textarea>
+                                    <div id = "boxMsg2"></div>
+                                </div>
+                                <div class="line"></div>
+                            </div>
                         </div>
-                        <div class="line"></div>
-                        
+                    
                         <div class="row myButton">                   
                             <div class="button col-12 col-sm-12 col-md-6 col-xl-6">
                                 <button class="center btn btn-danger" id = "btnGen">Generate Password</button>
