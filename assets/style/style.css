@@ -2,29 +2,32 @@ body{
     margin:0px;
     padding:0px;
     background-color: rgb(240, 239, 239);
+    width:100%;
     font-family: 'Ubuntu', sans-serif;
 }
 
 header{
     text-align: center;
     margin-top:20px;
-    margin-bottom:50px;
+    margin-bottom:20px;
 }
 
 .card{
     border-radius:2%;
+    margin-bottom:10px;
 }
 
-.card-body{
+/* .card-body{
     display:flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .myBox{
+    margin:0px;
     border:1px dashed lightgray;
     border-radius:5%;
-    width:90%;
+    width:100%;
     height:max-content;
     padding-bottom: 10px;
     text-align:center;
@@ -39,7 +42,7 @@ header{
 
 .textLeft{
     align-self:flex-start;
-    margin-top:40px;
+    margin-top:20px;
     margin-left:10px;
     font-size:2rem;
 }
@@ -49,10 +52,10 @@ header{
 }
 
 .line{
-    width:95%;
+    width:100%;
 	height:1px;
     background:rgb(179, 179, 179);
-    margin:20px;
+    margin:20px 0px;
 }
 
 .btn{
@@ -90,8 +93,16 @@ header{
 	font-size:1rem;	
 }
 
+.msg3Display{
+    margin-top:40px;
+	text-align:center;
+	color:rgb(163, 118, 123);
+	font-size:1rem;	
+}
+
 .checkBoxes{
-    padding:4%;
+    padding:2%;
+    
 }
 
 .btn{

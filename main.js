@@ -26,7 +26,6 @@ var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30
 
 //the function is to check what the user has selected and the desired password length
 function passwordForCheckBox(){
-	var password = "";
 	var i = 0;//i represents how many checkboxes are checked
 	var checkLow = 0;//check lowercase letters
 	var checkUpp = 0;//check uppercase letters
@@ -91,6 +90,7 @@ function genPassword(number,charsetType){
 		case 3:
 		for (var i = 0; i<N; i++){
 			password += charset3.charAt(Math.floor(Math.random() * 30));
+			console.log(password);
 		}
 		break;
 	}
@@ -180,20 +180,23 @@ function generatePassword(isLength) {
 			//when num = 2, there are 6=3+2+1 possibilities
 			case 2:
 			t = Math.round(L/2);//t is to to make each chaset types to be divided into two groups
+			console.log(t);
 			if(passwordForCheckBox().checkLow){
 				if(passwordForCheckBox().checkUpp){
-					password = genPassword(t,0)
-					password += genPassword(L-t,1)
+					password = genPassword(t,0);
+					console.log(password);
+					password += genPassword(L-t,1);
+					console.log(password);
 					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 				else if(passwordForCheckBox().checkNum){
-					password = genPassword(t,0)
-					password += genPassword(L-t,2)
+					password = genPassword(t,0);
+					password += genPassword(L-t,2);
 					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 				else if(passwordForCheckBox().checkSpe){
-					password = genPassword(t,0)
-					password += genPassword(L-t,3)
+					password = genPassword(t,0);
+					password += genPassword(L-t,3);
 					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 			}
@@ -204,15 +207,18 @@ function generatePassword(isLength) {
 					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 				else if (passwordForCheckBox().checkSpe){
-					password = genPassword(t,1)
-					password += genPassword(L-t,3)
+					password = genPassword(t,1);
+					password += genPassword(L-t,3);
 					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 			}
 			else if (passwordForCheckBox().checkNum){
 				if(passwordForCheckBox().checkSpe){
-					password = genPassword(t,2)
-					password += genPassword(L-t,3)
+					password = genPassword(t,2);
+					console.log(password);
+					password += genPassword(L-t,3);
+					console.log(L-t);
+					console.log(password);
 					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 			}
@@ -320,8 +326,9 @@ btnCopy.addEventListener("click", function(e){
 	boxMsg.select();
 	document.execCommand("Copy");
 	boxMsg.classList.add("msgDisplay");
-	boxMsg2.classList.add("msg2Display");
+	boxMsg2.classList.add("msg3Display");
 	boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
+	setTimeout(('boxMsg2.innerHTML = ""'),2000);
 });
 
 
@@ -337,7 +344,7 @@ if(!isGen){
 		var userPassword = passwordCheck(userInput);
 		console.log(userPassword);
 		if(userPassword === false){
-			boxMsg.classList.add("msgDisplay");
+			boxMsg.classList.add("msg3Display");
 			boxMsg.innerHTML = "Please see the instructions above. (This will disappeat in 5 seconds.)"
 			setTimeout(('boxMsg.innerHTML = ""'),5000);
 		}
