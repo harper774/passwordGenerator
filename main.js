@@ -147,12 +147,9 @@ function generatePassword(isLength) {
 
 	this.L = isLength;
 	if(L<8 || L>128 || num<1){
-		alert("Sorry! You length does not fit the requirement! Please re-enter another number between 8 and 128!");
+		alert("Sorry!Please re-enter another number between 8 and 128 and tick at least one box!");
 	}
 	else {
-		console.log('hello');
-		console.log(passwordForCheckBox().checkLow);
-
 		//switch num to determine the following 8 scenarios
 		switch (num){
 			//when num = 1, there are 4 possibilities
