@@ -1,8 +1,12 @@
+//this is to make a password generator that could generate the password as desired by the user
+//also it could help check if the user's password match the requirement
+//the password requirement could be changed by changing function passwordCheck
+
+//firstly use dom to get the html objects
 var isGen = confirm("Do you want me to generate a password for you?");
 
 var btnGen = document.getElementById("btnGen");
 var btnCopy = document.getElementById("btnCopy");
-// var btnSub = document.getElementById("buttonSubmit");
 
 var boxMsg = document.getElementById("boxMsg");
 var boxMsg2 = document.getElementById("boxMsg2");
@@ -13,23 +17,25 @@ var upperChar = document.getElementById("defaultCheck3");
 var lowerChar = document.getElementById("defaultCheck4");
 var passwordLength = document.getElementById("passwordLength");
 
+//define the charset types for password requirement
 var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~·!@#$%^&*()<>/?.,;:=-+-[]{}\|"//92
 var charset0 = "abcdefghijklmnopqrstuvwxyz";//26
 var charset1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//26
 var charset2 = "0123456789";//10
 var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30
 
+//the function is to check what the user has selected and the desired password length
 function passwordForCheckBox(){
 	var password = "";
-	var i = 0;
-	var checkLow = 0;
-	var checkUpp = 0;
-	var checkNum = 0;
-	var checkSpe = 0;
+	var i = 0;//i represents how many checkboxes are checked
+	var checkLow = 0;//check lowercase letters
+	var checkUpp = 0;//check uppercase letters
+	var checkNum = 0;//check numeric letters
+	var checkSpe = 0;//check specail characters
 
+	//the propoerty of checked could be got from the checkbox
 	if (lowerChar.checked){
 		checkLow++;
-		console.log(checkLow);
 		i++;
 	}
 	if (upperChar.checked){
@@ -53,6 +59,11 @@ function passwordForCheckBox(){
 	};
 }
 
+//this is to generate password with the length and the characterset
+//when charset type is 0 ---- lowercase
+//when type is 1 ---- uppercase
+//when type is 2 ---- numeric number
+//when type is 3 ---- special chaarcters
 function genPassword(number,charsetType){
 	this.N = number;
 	this.C = charsetType;
@@ -62,73 +73,78 @@ function genPassword(number,charsetType){
 		case 0: 
 		for (var i = 0; i<N; i++){
 			password += charset0.charAt(Math.floor(Math.random() * 26));
-			console.log(password);
 		}
 		break;
 
 		case 1:
 		for (var i = 0; i<N; i++){
 			password += charset1.charAt(Math.floor(Math.random() * 26));
-			console.log(password);
 		}
 		break;
 
 		case 2:
 		for (var i = 0; i<N; i++){
 			password += charset2.charAt(Math.floor(Math.random() * 10));
-			console.log(password);
 		}
 		break;
 
 		case 3:
 		for (var i = 0; i<N; i++){
 			password += charset3.charAt(Math.floor(Math.random() * 30));
-			console.log(password);
-			console.log(typeof(password));
 		}
 		break;
 	}
-	console.log(typeof(password));
 	return password;
 }
 
-// function randomPassword(password){
-// 	this.password = password.split("");
-// 	console.log(password.split(""));
+//this is to random the password array
+//because the password from my function generatePassword is in sequence accoding to charset types
+function randomPassword(password) {
+	this.pw = password;
+	var temp = 0;//to store the temporay data
+	var j= 0;
 
-// 	for (var i = 1; i < password.length; i++) {
-// 		var random = Math.floor(Math.random() * (i + 1));
-// 		[password[i], password[random]] = [password[random], password[i]];
-// 	}
-// 	console.log(password);
-//     return password.join(",");
-// }
-
-function randomPassword(array) {
-	console.log(array);
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    for (var i = pw.length - 1; i >= 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = pw[i];
+        pw[i] = pw[j];
+        pw[j] = temp;
 	}
-	console.log(array);
-    return array;
+	console.log(pw);
+	return pw;	
 }
 
+// function randomPassword(password) {
+// 	this.pw = password;
+// 	var temp = 0;//to store the temporay data
+// 	var j= 0;
+
+//     for (var i = pw.length - 1; i >= 0; i--) {
+//         j = Math.floor(Math.random() * (i + 1));
+// 		temp = pw.charAt(i);		
+// 		pw.valueOf(i) = pw.charAt(j);
+//         pw.valueOf(j) = temp;
+// 	}
+//     return pw;
+// }
+
+//this is to delete the commas caused by toString
 function commaDelete(password){
 	this.pw = password;
 	var L = password.length;
-	pw = pw.replace(/,/g, "");
+	pw = pw.replace(/,/g, "");//g is for global modifier, which is to reaplace all the ',', not just the first one
 	return pw;
 }
 
+//this is to generat password with length
+//also the longest functions in the script
+//it also use function passwordForCheckBox to retreive the user data
 function generatePassword(isLength) {
 	var password = "";
-	var num = passwordForCheckBox().num;
-	var t,t2 = 0;
+	console.log(password);
+	var num = passwordForCheckBox().num;//to acquire the data from the checkbox and the password length
+	var t,t2 = 0;//t and t2 is for the digits in each character sets
 
-	console.log(num);
 	this.L = isLength;
 	if(L<8 || L>128 || num<1){
 		alert("Sorry! You length does not fit the requirement! Please re-enter another number between 8 and 128!");
@@ -136,29 +152,37 @@ function generatePassword(isLength) {
 	else {
 		console.log('hello');
 		console.log(passwordForCheckBox().checkLow);
+
+		//switch num to determine the following 8 scenarios
 		switch (num){
+			//when num = 1, there are 4 possibilities
 			case 1:
 			if(passwordForCheckBox().checkLow){
 				password = genPassword(L,0);
-				password = randomPassword(Array.from(password)).join();
-				console.log("password");
+				//I could not random the string object for now cause the charAt or valuOf could not overwritten
+				//so I choose to change the string to array by using Array.from
+				//then use function randomPassword to random the array
+				//then use toString to get it back to string
+				//then delete the commas in the string to return the password
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			else if(passwordForCheckBox().checkUpp){
 				password = genPassword(L,1);
-				password = randomPassword(password);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			else if(passwordForCheckBox().checkNum){
 				password = genPassword(L,2);
-				password = randomPassword(password);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			else{
 				password = genPassword(L,3);
-				password = randomPassword(password);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			break;
 
+			//when num = 2, there are 6=3+2+1 possibilities
 			case 2:
-			t = Math.round(L/2);
+			t = Math.round(L/2);//t is to to make each chaset types to be divided into two groups
 			if(passwordForCheckBox().checkLow){
 				if(passwordForCheckBox().checkUpp){
 					password = genPassword(t,0)
@@ -197,46 +221,46 @@ function generatePassword(isLength) {
 			}
 			break;
 
+			//when num = 3, there are 4 possibilites
 			case 3:
-			t = Math.round(L/3);
+			t = Math.round(L/3);//t is to to make each chaset types to be divided into 3 groups
 			if(!passwordForCheckBox().checkLow){
 				password = genPassword(t,1);
 				password += genPassword(t,2);
-				password += genPassword(L-t,3);
+				password += genPassword(L-2*t,3);
 				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			else if (!passwordForCheckBox().checkUpp){
 				password = genPassword(t,0);
 				password += genPassword(t,2);
-				password += genPassword(L-t,3);
+				password += genPassword(L-2*t,3);
 				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			else if (!passwordForCheckBox().checkNum){
 				password = genPassword(t,0);
 				password += genPassword(t,1);
-				password += genPassword(L-t,3);
+				password += genPassword(L-2*t,3);
 				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			else if (!passwordForCheckBox().checkSpe){
 				password = genPassword(t,0);
 				password += genPassword(t,1);
-				password += genPassword(L-t,2);
+				password += genPassword(L-2*t,2);
 				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			break;
 
+			//when num = 4, there are only one possibility
 			case 4:
 				t = Math.round(L/4);
 				console.log(t);
 				password = genPassword(t,0);
 				password += genPassword(t,1);
 				password += genPassword(t,2);
-				password += genPassword(L-t,3);
+				password += genPassword(L-3*t,3);
 				password = commaDelete(randomPassword(Array.from(password)).toString());
 		}
 	}
-
-
 	return password;
 
 			// var password = "";
@@ -253,11 +277,14 @@ function generatePassword(isLength) {
 		// return password;
 }
 
+//this is to check the if the password that user input fit the requirement or not
 function passwordCheck(userInput){
 	this.user = userInput;
 	var length = user.length;
-	var score = 0;
+	var score = 0;//score is how many charset types can be found in the password
 	
+	//using match to determine whether the password contains each charater set
+	//match will return null if there are no matching between the two
 	if(length<8 || length>128){
 		alert("Sorry! You password length does not fit the requirement!");
 		return false;
@@ -286,9 +313,7 @@ function passwordCheck(userInput){
 
 //button for Gen and Copy
 //when clicked, they will have different reactions
-
 btnGen.addEventListener("click", function(e){
-
 	boxMsg.classList.add("msgDisplay");
 	boxMsg.innerHTML = generatePassword(passwordLength.value);
 	console.log(passwordLength.value);
