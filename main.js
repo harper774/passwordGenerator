@@ -305,10 +305,10 @@ btnCopy.addEventListener("click", function(e){
 
 //Main process
 
-if(isGen){
-	alert('Please fill out the following form and click on "Generate Password" to get your own password');
-}
-else{
+// if(isGen){
+// 	alert('Please fill out the following form and click on "Generate Password" to get your own password');
+// }
+if(!isGen){
 	var isSpecial = confirm("Ok please type in your own password and I will check it for you:");
 	if(isSpecial){
 		var userInput = prompt("Please type in your password below:");
