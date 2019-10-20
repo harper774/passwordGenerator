@@ -90,12 +90,43 @@ function genPassword(number,charsetType){
 	}
 	console.log(typeof(password));
 	return password;
+}
 
+// function randomPassword(password){
+// 	this.password = password.split("");
+// 	console.log(password.split(""));
+
+// 	for (var i = 1; i < password.length; i++) {
+// 		var random = Math.floor(Math.random() * (i + 1));
+// 		[password[i], password[random]] = [password[random], password[i]];
+// 	}
+// 	console.log(password);
+//     return password.join(",");
+// }
+
+function randomPassword(array) {
+	console.log(array);
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+	}
+	console.log(array);
+    return array;
+}
+
+function commaDelete(password){
+	this.pw = password;
+	var L = password.length;
+	pw = pw.replace(/,/g, "");
+	return pw;
 }
 
 function generatePassword(isLength) {
 	var password = "";
 	var num = passwordForCheckBox().num;
+	var t,t2 = 0;
 
 	console.log(num);
 	this.L = isLength;
@@ -109,66 +140,103 @@ function generatePassword(isLength) {
 			case 1:
 			if(passwordForCheckBox().checkLow){
 				password = genPassword(L,0);
+				password = randomPassword(Array.from(password)).join();
 				console.log("password");
 			}
 			else if(passwordForCheckBox().checkUpp){
 				password = genPassword(L,1);
+				password = randomPassword(password);
 			}
 			else if(passwordForCheckBox().checkNum){
 				password = genPassword(L,2);
+				password = randomPassword(password);
 			}
 			else{
 				password = genPassword(L,3);
+				password = randomPassword(password);
 			}
 			break;
 
 			case 2:
-			if(passwordForCheckBox.checkLow){
-				if(passwordForCheckBox.checkUpp){
-
+			t = Math.round(L/2);
+			if(passwordForCheckBox().checkLow){
+				if(passwordForCheckBox().checkUpp){
+					password = genPassword(t,0)
+					password += genPassword(L-t,1)
+					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
-				else if(passwordForCheckBox.checkNum){
-
+				else if(passwordForCheckBox().checkNum){
+					password = genPassword(t,0)
+					password += genPassword(L-t,2)
+					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
-				else if(passwordForCheckBox.checkSpe){
-
+				else if(passwordForCheckBox().checkSpe){
+					password = genPassword(t,0)
+					password += genPassword(L-t,3)
+					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 			}
-			else if (passwordForCheckBox.checkUpp){
-				if (passwordForCheckBox.checkNum){
-
+			else if (passwordForCheckBox().checkUpp){
+				if (passwordForCheckBox().checkNum){
+					password = genPassword(t,1)
+					password += genPassword(L-t,2)
+					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
-				else if (passwordForCheckBox.checkSpe){
-
+				else if (passwordForCheckBox().checkSpe){
+					password = genPassword(t,1)
+					password += genPassword(L-t,3)
+					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 			}
-			else if (passwordForCheckBox.checkNum){
-				if(passwordForCheckBox.checkSpe){
-
+			else if (passwordForCheckBox().checkNum){
+				if(passwordForCheckBox().checkSpe){
+					password = genPassword(t,2)
+					password += genPassword(L-t,3)
+					password = commaDelete(randomPassword(Array.from(password)).toString());
 				}
 			}
 			break;
 
 			case 3:
-			if(!passwordForCheckBox.checkLow){
-
+			t = Math.round(L/3);
+			if(!passwordForCheckBox().checkLow){
+				password = genPassword(t,1);
+				password += genPassword(t,2);
+				password += genPassword(L-t,3);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
-			else if (!passwordForCheckBox.checkUpp){
-
+			else if (!passwordForCheckBox().checkUpp){
+				password = genPassword(t,0);
+				password += genPassword(t,2);
+				password += genPassword(L-t,3);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
-			else if (!passwordForCheckBox.checkNum){
-
+			else if (!passwordForCheckBox().checkNum){
+				password = genPassword(t,0);
+				password += genPassword(t,1);
+				password += genPassword(L-t,3);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
-			else if (!passwordForCheckBox.checkSpe){
-
+			else if (!passwordForCheckBox().checkSpe){
+				password = genPassword(t,0);
+				password += genPassword(t,1);
+				password += genPassword(L-t,2);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 			}
 			break;
 
 			case 4:
-			
-
+				t = Math.round(L/4);
+				console.log(t);
+				password = genPassword(t,0);
+				password += genPassword(t,1);
+				password += genPassword(t,2);
+				password += genPassword(L-t,3);
+				password = commaDelete(randomPassword(Array.from(password)).toString());
 		}
 	}
+
+
 	return password;
 
 			// var password = "";
@@ -191,8 +259,8 @@ function passwordCheck(userInput){
 	var score = 0;
 	
 	if(length<8 || length>128){
-		alert("Sorry! You password does not fit the requirement!");
-		return user;
+		alert("Sorry! You password length does not fit the requirement!");
+		return false;
 	}
 	if(user.match(/[a-z]/)){
 		score++;	
@@ -207,12 +275,12 @@ function passwordCheck(userInput){
 		score++;	
 	}
 	
-	if(score > 3){
+	if(score > 0){
 		return user;
 	}
 	else{
-		alert("Sorry! You password does not fit the requirement!");
-		return user;
+		alert("Sorry! You password should be more secure!");
+		return false;
 	}
 }
 
@@ -245,11 +313,20 @@ else{
 	if(isSpecial){
 		var userInput = prompt("Please type in your password below:");
 		var userPassword = passwordCheck(userInput);
-		boxMsg.classList.add("msgDisplay");
-		boxMsg.innerHTML = userPassword;
+		console.log(userPassword);
+		if(userPassword === false){
+			boxMsg.classList.add("msgDisplay");
+			boxMsg.innerHTML = "Please see the instructions above. (This will disappeat in 5 seconds.)"
+			setTimeout(('boxMsg.innerHTML = ""'),5000);
+		}
+		else{
+			boxMsg.classList.add("msgDisplay");
+			console.log(userPassword);
+			boxMsg.innerHTML = userPassword;
+		}
 	}
 	else{
-		alert("Ok then see you!");
+		alert("Ok then see you! You could still use the form to get your new password!");
 	}
 }
 
