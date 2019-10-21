@@ -3,26 +3,30 @@
 //the password requirement could be changed by changing function passwordCheck
 
 //firstly use dom to get the html objects
-var isGen = confirm("Do you want me to generate a password for you?");
+// var isGen = confirm("Do you want me to generate a password for you?");
 
 var btnGen = document.getElementById("btnGen");
 var btnCopy = document.getElementById("btnCopy");
+var btnCheck = document.getElementById("btnCheck");
 
 var boxMsg = document.getElementById("boxMsg");
 var boxMsg2 = document.getElementById("boxMsg2");
+
 
 var specialChar = document.getElementById("defaultCheck1");
 var numericChar = document.getElementById("defaultCheck2");
 var upperChar = document.getElementById("defaultCheck3");
 var lowerChar = document.getElementById("defaultCheck4");
 var passwordLength = document.getElementById("passwordLength");
+var passwordUserInput = document.getElementById("passwordLength2");
 
 //define the charset types for password requirement
-var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~·!@#$%^&*()<>/?.,;:=-+-[]{}\|"//92
+var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~·!@#$%^&*()<>/?.,;:=-+-[]{}|"//91
 var charset0 = "abcdefghijklmnopqrstuvwxyz";//26
 var charset1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//26
 var charset2 = "0123456789";//10
-var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30//how to display special characters?
+var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}|";//29//some of this set will not appear
+// var charset3 = "!()-.?[]_~;:@#$%^&*+=";
 
 //the function is to check what the user has selected and the desired password length
 function passwordForCheckBox(){
@@ -89,7 +93,7 @@ function genPassword(number,charsetType){
 
 		case 3:
 		for (var i = 0; i<N; i++){
-			password += charset3.charAt(Math.floor(Math.random() * 30));
+			password += charset3.charAt(Math.floor(Math.random() * 29));
 			console.log(password);
 		}
 		break;
@@ -288,30 +292,41 @@ function passwordCheck(userInput){
 	
 	//using match to determine whether the password contains each charater set
 	//match will return null if there are no matching between the two
-	if(length<8 || length>128){
-		alert("Sorry! You password length does not fit the requirement!");
-		return false;
-	}
-	if(user.match(/[a-z]/)){
-		score++;	
-	}
-	if(user.match(/[A-Z]/)){
-		score++;	
-	}
-	if(user.match(/[0-9]/)){
-		score++;	
-	}
-	if(user.match(/[^a-zA-Z0-9]/)){
-		score++;	
-	}
-	
-	if(score > 0){
-		return user;
+	if(user === ""){
+		alert("Please input your password!");
 	}
 	else{
-		alert("Sorry! You password should be more secure!");
-		return false;
+		if(user !== "" && (length<8 || length>128)){
+			alert("Sorry! You password length does not fit the requirement!");
+			return false;
+		}
+		if(user.match(/[a-z]/)){
+			score++;	
+		}
+		if(user.match(/[A-Z]/)){
+			score++;	
+		}
+		if(user.match(/[0-9]/)){
+			score++;	
+		}
+		if(user.match(/[^a-zA-Z0-9]/)){
+			score++;	
+		}
+
+		if(score > 0){
+			
+			return {
+				user:user,
+				score:score
+			}
+		}
+		else{
+			alert("Sorry! You password should be more secure!");
+			return false;
+		}
 	}
+	
+	
 }
 
 //button for Gen and Copy
@@ -331,33 +346,41 @@ btnCopy.addEventListener("click", function(e){
 	setTimeout(('boxMsg2.innerHTML = ""'),2000);
 });
 
+btnCheck.addEventListener("click", function(e){
+	var check = passwordCheck(passwordUserInput.value).score;
+	boxMsg.classList.add("msgDisplay");
+	boxMsg.innerHTML = passwordUserInput.value;
+	boxMsg2.classList.add("msg3Display");
+	boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
+});
+
 
 //Main process
 
 // if(isGen){
 // 	alert('Please fill out the following form and click on "Generate Password" to get your own password');
 // }
-if(!isGen){
-	var isSpecial = confirm("Ok please type in your own password and I will check it for you:");
-	if(isSpecial){
-		var userInput = prompt("Please type in your password below:");
-		var userPassword = passwordCheck(userInput);
-		console.log(userPassword);
-		if(userPassword === false){
-			boxMsg.classList.add("msg3Display");
-			boxMsg.innerHTML = "Please see the instructions above. (This will disappeat in 5 seconds.)"
-			setTimeout(('boxMsg.innerHTML = ""'),5000);
-		}
-		else{
-			boxMsg.classList.add("msgDisplay");
-			console.log(userPassword);
-			boxMsg.innerHTML = userPassword;
-		}
-	}
-	else{
-		alert("Ok then see you! You could still use the form to get your new password!");
-	}
-}
+// if(!isGen){
+// 	var isSpecial = confirm("Ok please type in your own password and I will check it for you:");
+// 	if(isSpecial){
+// 		var userInput = prompt("Please type in your password below:");
+// 		var userPassword = passwordCheck(userInput);
+// 		console.log(userPassword);
+// 		if(userPassword === false){
+// 			boxMsg.classList.add("msg3Display");
+// 			boxMsg.innerHTML = "Please see the instructions above. (This will disappeat in 5 seconds.)"
+// 			setTimeout(('boxMsg.innerHTML = ""'),5000);
+// 		}
+// 		else{
+// 			boxMsg.classList.add("msgDisplay");
+// 			console.log(userPassword);
+// 			boxMsg.innerHTML = userPassword;
+// 		}
+// 	}
+// 	else{
+// 		alert("Ok then see you! You could still use the form to get your new password!");
+// 	}
+// }
 
 
 // if(isGen){

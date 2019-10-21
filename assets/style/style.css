@@ -12,9 +12,18 @@ header{
     margin-bottom:20px;
 }
 
+header h1{
+    text-shadow: 0.1rem 0.1rem 1rem rgb(87, 85, 85);
+}
+
 .card{
     border-radius:2%;
     margin-bottom:10px;
+    box-shadow:  10px 10px 25px #888888;
+}
+
+.card h2{
+    text-shadow: 0.1rem 0.1rem 1rem #888888;
 }
 
 /* .card-body{
@@ -100,18 +109,44 @@ header{
 	font-size:1rem;	
 }
 
-.checkBoxes{
+.passInput{
+    border:1px dotted lightgray;
+    border-radius:4%;
+    margin-top:8px;
+
+}
+
+.checkBoxes,.passInput{
     padding:2%;
     
 }
 
 .btn{
     margin-left:0px;
+    box-shadow:  4px 4px 15px #7e7b7b;
+}
 
+.btn-danger{
+    background-color: rgb(236, 102, 122);
+    border:1px solid rgb(240, 116, 134);
+}
+
+.btn-danger:hover{
+    background-color: rgb(241, 82, 106);
+    border:1px solid rgb(240, 116, 134);
+}
+
+.lableCenter{
+    justify-items: center;
 }
 
 #passwordLength{
     width:100px;
+    word-wrap: wrap;
+}
+
+#passwordLength2{
+    width:max-content
     word-wrap: wrap;
 }
 
