@@ -151,7 +151,7 @@ function generatePassword(isLength) {
 
 	this.L = isLength;
 	if(L<8 || L>128 || num<1){
-		alert("Sorry!Please re-enter another number between 8 and 128 and tick at least one box!");
+		alert("Sorry! Please re-enter another number between 8 and 128 and tick at least one box!");
 	}
 	else {
 		//switch num to determine the following 8 scenarios
