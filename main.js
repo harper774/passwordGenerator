@@ -22,7 +22,7 @@ var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~·
 var charset0 = "abcdefghijklmnopqrstuvwxyz";//26
 var charset1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//26
 var charset2 = "0123456789";//10
-var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30
+var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}\|";//30//how to display special characters?
 
 //the function is to check what the user has selected and the desired password length
 function passwordForCheckBox(){
