@@ -129,6 +129,10 @@ header h1{
     box-shadow:  4px 4px 15px #7e7b7b;
 }
 
+.btn-sm{
+    margin-left:4px;
+}
+
 .btn-danger{
     background-color: rgb(236, 102, 122);
     border:1px solid rgb(240, 116, 134);
@@ -152,6 +156,7 @@ header h1{
 #passwordLength2{
     width:60%;
     word-wrap: wrap;
+    padding-bottom:4px;
 }
 
 @media screen and (max-width:640px){
