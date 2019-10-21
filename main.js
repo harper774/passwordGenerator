@@ -347,11 +347,13 @@ btnCopy.addEventListener("click", function(e){
 });
 
 btnCheck.addEventListener("click", function(e){
-	var check = passwordCheck(passwordUserInput.value).score;
-	boxMsg.classList.add("msgDisplay");
-	boxMsg.innerHTML = passwordUserInput.value;
-	boxMsg2.classList.add("msg3Display");
-	boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
+	if(passwordCheck(passwordUserInput.value).score){
+		var check = passwordCheck(passwordUserInput.value).score;
+		boxMsg.classList.add("msgDisplay");
+		boxMsg.innerHTML = passwordUserInput.value;
+		boxMsg2.classList.add("msg3Display");
+		boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
+	}
 });
 
 
