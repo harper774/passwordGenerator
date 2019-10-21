@@ -112,13 +112,16 @@ header h1{
 .passInput{
     border:1px dotted lightgray;
     border-radius:4%;
-    margin-top:8px;
-
+    margin:8px 5px 1px 5px;
 }
 
 .checkBoxes,.passInput{
     padding:2%;
     
+}
+
+.form-check2{
+    margin:5px;
 }
 
 .btn{
@@ -138,6 +141,7 @@ header h1{
 
 .lableCenter{
     justify-items: center;
+    padding-right:10px;
 }
 
 #passwordLength{
@@ -146,7 +150,7 @@ header h1{
 }
 
 #passwordLength2{
-    width:max-content
+    width:60%;
     word-wrap: wrap;
 }
 
