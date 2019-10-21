@@ -338,12 +338,14 @@ btnGen.addEventListener("click", function(e){
 });
 
 btnCopy.addEventListener("click", function(e){
-	boxMsg.select();
-	document.execCommand("Copy");
-	boxMsg.classList.add("msgDisplay");
-	boxMsg2.classList.add("msg3Display");
-	boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
-	setTimeout(('boxMsg2.innerHTML = ""'),2000);
+	if(boxMsg.value !== ""){
+		boxMsg.select();
+		document.execCommand("Copy");
+		boxMsg.classList.add("msgDisplay");
+		boxMsg2.classList.add("msg3Display");
+		boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
+		setTimeout(('boxMsg2.innerHTML = ""'),2000);
+	}
 });
 
 btnCheck.addEventListener("click", function(e){
