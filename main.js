@@ -353,6 +353,7 @@ btnCheck.addEventListener("click", function(e){
 		boxMsg.innerHTML = passwordUserInput.value;
 		boxMsg2.classList.add("msg3Display");
 		boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
+		setTimeout(('boxMsg2.innerHTML = ""'),5000);
 	}
 });
 
