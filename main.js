@@ -21,12 +21,12 @@ var passwordLength = document.getElementById("passwordLength");
 var passwordUserInput = document.getElementById("passwordLength2");
 
 //define the charset types for password requirement
-var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~·!@#$%^&*()<>/?.,;:=-+-[]{}|"//91
+var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(){}[]=<>/,.'"//83
 var charset0 = "abcdefghijklmnopqrstuvwxyz";//26
 var charset1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//26
 var charset2 = "0123456789";//10
-var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}|";//29//some of this set will not appear
-// var charset3 = "!()-.?[]_~;:@#$%^&*+=";
+// var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}|";//29//some of this set will not appear
+var charset3 = "!@#$%^&*(){}[]=<>/,.'";//21
 
 //the function is to check what the user has selected and the desired password length
 function passwordForCheckBox(){
@@ -71,7 +71,7 @@ function genPassword(number,charsetType){
 	this.N = number;
 	this.C = charsetType;
 	var password = "";
-
+	//there is another way of doing this by using String.fromCharCode
 	switch (C){
 		case 0: 
 		for (var i = 0; i<N; i++){
@@ -93,7 +93,7 @@ function genPassword(number,charsetType){
 
 		case 3:
 		for (var i = 0; i<N; i++){
-			password += charset3.charAt(Math.floor(Math.random() * 29));
+			password += charset3.charAt(Math.floor(Math.random() * 21));
 			console.log(password);
 		}
 		break;
@@ -135,9 +135,21 @@ function randomPassword(password) {
 //this is to delete the commas caused by toString
 function commaDelete(password){
 	this.pw = password;
+	var pwNew = "";
+	var rest = "";
 	var L = password.length;
-	pw = pw.replace(/,/g, "");//g is for global modifier, which is to reaplace all the ',', not just the first one
-	return pw;
+
+	for (var i = 0; i<L;i++){
+		if(i%2 == 0){
+			pwNew += pw[i];
+		}
+		else{
+			rest += pw[i];
+		}
+	}
+	console.log(pwNew);
+	console.log(rest);
+	return pwNew;
 }
 
 //this is to generat password with length
@@ -178,6 +190,7 @@ function generatePassword(isLength) {
 			else{
 				password = genPassword(L,3);
 				password = commaDelete(randomPassword(Array.from(password)).toString());
+				console.log(password);
 			}
 			break;
 
