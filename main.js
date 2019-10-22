@@ -11,7 +11,7 @@ var btnCheck = document.getElementById("btnCheck");
 
 var boxMsg = document.getElementById("boxMsg");
 var boxMsg2 = document.getElementById("boxMsg2");
-
+var boxMsg3 = document.getElementById("secure");
 
 var specialChar = document.getElementById("defaultCheck1");
 var numericChar = document.getElementById("defaultCheck2");
@@ -21,12 +21,12 @@ var passwordLength = document.getElementById("passwordLength");
 var passwordUserInput = document.getElementById("passwordLength2");
 
 //define the charset types for password requirement
-var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(){}[]=<>/,.'"//83
+var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*(){}[]=<>/,.'"//91
 var charset0 = "abcdefghijklmnopqrstuvwxyz";//26
 var charset1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//26
 var charset2 = "0123456789";//10
-// var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}|";//29//some of this set will not appear
-var charset3 = "!@#$%^&*(){}[]=<>/,.'";//21
+var charset3 = "~·!@#$%^&*()<>/?.,;:=-+-[]{}|";//29//some of this set will not appear
+// var charset3 = "!@#$%^&*(){}[]=<>/,.'";//21
 
 //the function is to check what the user has selected and the desired password length
 function passwordForCheckBox(){
@@ -93,7 +93,7 @@ function genPassword(number,charsetType){
 
 		case 3:
 		for (var i = 0; i<N; i++){
-			password += charset3.charAt(Math.floor(Math.random() * 21));
+			password += charset3.charAt(Math.floor(Math.random() * 29));
 			console.log(password);
 		}
 		break;
@@ -309,10 +309,10 @@ function passwordCheck(userInput){
 		alert("Please input your password!");
 	}
 	else{
-		if(user !== "" && (length<8 || length>128)){
-			alert("Sorry! You password length does not fit the requirement!");
-			return false;
-		}
+		// if(user !== "" && (length<8 || length>128)){
+		// 	alert("Sorry! You password length does not fit the requirement!");
+		// 	return false;
+		// }
 		if(user.match(/[a-z]/)){
 			score++;	
 		}
@@ -326,17 +326,17 @@ function passwordCheck(userInput){
 			score++;	
 		}
 
-		if(score > 0){
+		// if(score > 0){
 			
 			return {
 				user:user,
 				score:score
 			}
-		}
-		else{
-			alert("Sorry! You password should be more secure!");
-			return false;
-		}
+		// }
+		// else{
+		// 	// alert("Sorry! You password should be more secure!");
+		// 	return false;
+		// }
 	}
 	
 	
@@ -345,6 +345,7 @@ function passwordCheck(userInput){
 //button for Gen and Copy
 //when clicked, they will have different reactions
 btnGen.addEventListener("click", function(e){
+	boxMsg3.innerHTML = "Your Password is:";
 	boxMsg.classList.add("msgDisplay");
 	boxMsg.innerHTML = generatePassword(passwordLength.value);
 	console.log(passwordLength.value);
@@ -364,11 +365,37 @@ btnCopy.addEventListener("click", function(e){
 btnCheck.addEventListener("click", function(e){
 	if(passwordCheck(passwordUserInput.value).score){
 		var check = passwordCheck(passwordUserInput.value).score;
+		console.log(check);
 		boxMsg.classList.add("msgDisplay");
 		boxMsg.innerHTML = passwordUserInput.value;
 		boxMsg2.classList.add("msg3Display");
-		boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
-		setTimeout(('boxMsg2.innerHTML = ""'),5000);
+		if(check === 0){
+			boxMsg.innerHTML = "";
+		}
+		else if (passwordUserInput.value.length<8 || passwordUserInput.value>128){
+			boxMsg.innerHTML = "";
+			boxMsg2.innerHTML = "Your password length is not between 8 and 128.";
+			setTimeout(('boxMsg2.innerHTML = ""'),5000);
+		}
+		else{
+		switch(check){
+				// case 0:
+				case 1:
+					boxMsg3.innerHTML = "Your password's security level is <span>low.<span>";
+					break;
+				case 2:
+					boxMsg3.innerHTML = "Your password's security level is <span>medium-low.<span>";
+					break;
+				case 3:
+					boxMsg3.innerHTML = "Your password's security level is <span>medium.<span>";
+					break;
+				case 4:
+					boxMsg3.innerHTML = "Your password's security level is <span>high.<span>";
+					break;
+			}
+			boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
+			setTimeout(('boxMsg2.innerHTML = ""'),5000);
+		}
 	}
 });
 
