@@ -156,12 +156,16 @@ span{
 #passwordLength{
     width:100px;
     word-wrap: wrap;
+    border-radius:5%;
+    box-shadow:1px 1px 6px rgb(180, 175, 172);
 }
 
 #passwordLength2{
     width:60%;
     word-wrap: wrap;
     padding-bottom:4px;
+    border-radius:5%;
+    box-shadow:1px 1px 6px rgb(180, 175, 172);
 }
 
 @media screen and (max-width:640px){
