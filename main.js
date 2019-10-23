@@ -348,6 +348,9 @@ btnGen.addEventListener("click", function(e){
 	boxMsg3.innerHTML = "Your Password is:";
 	boxMsg.classList.add("msgDisplay");
 	boxMsg.innerHTML = generatePassword(passwordLength.value);
+	boxMsg.value = generatePassword(passwordLength.value);//this is to fix the textara bug
+	//I found that the textarea could not be overwritten by innerHTML
+	//I had to change its value for a second time or more if I change the value inside
 	console.log(passwordLength.value);
 });
 
@@ -358,7 +361,9 @@ btnCopy.addEventListener("click", function(e){
 		boxMsg.classList.add("msgDisplay");
 		boxMsg2.classList.add("msg3Display");
 		boxMsg2.innerHTML = "<p>You have successfully copied the password!</p>";
-		setTimeout(('boxMsg2.innerHTML = ""'),2000);
+		// setTimeout(('boxMsg2.innerHTML = ""'),2000);
+		setTimeout(('boxMsg2.classList.add("invisible")'),2000);
+		boxMsg2.classList.remove("invisible");
 	}
 });
 
@@ -369,13 +374,19 @@ btnCheck.addEventListener("click", function(e){
 		boxMsg.classList.add("msgDisplay");
 		boxMsg.innerHTML = passwordUserInput.value;
 		boxMsg2.classList.add("msg3Display");
+		
 		if(check === 0){
+			boxMsg3.innerHTML = "Please input your password.";
 			boxMsg.innerHTML = "";
 		}
 		else if (passwordUserInput.value.length<8 || passwordUserInput.value>128){
 			boxMsg.innerHTML = "";
+			boxMsg3.innerHTML = "Your password is too short.";
 			boxMsg2.innerHTML = "Your password length is not between 8 and 128.";
-			setTimeout(('boxMsg2.innerHTML = ""'),5000);
+			boxMsg2.value = "Your password length is not between 8 and 128.";
+			// setTimeout(('boxMsg2.classList.remove("invisible")'),2000);			
+			setTimeout(('boxMsg2.classList.add("invisible")'),2000);
+			boxMsg2.classList.remove("invisible");
 		}
 		else{
 		switch(check){
@@ -393,8 +404,10 @@ btnCheck.addEventListener("click", function(e){
 					boxMsg3.innerHTML = "Your password's security level is <span>high.<span>";
 					break;
 			}
-			boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and your password contains " +check+" charset types.";
-			setTimeout(('boxMsg2.innerHTML = ""'),5000);
+			boxMsg2.innerHTML = "Your password length is between 8 and 128 <br> and it contains " +check+" charset types.";
+			// setTimeout(('boxMsg2.innerHTML = ""'),5000);
+			setTimeout(('boxMsg2.classList.add("invisible")'),2000);
+			boxMsg2.classList.remove("invisible");
 		}
 	}
 });
