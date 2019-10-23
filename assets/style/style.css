@@ -1,10 +1,10 @@
 body{
     margin:0px;
     padding:0px;
-    background-color: rgb(240, 239, 239);
+    /* background-color: rgb(240, 239, 239); */
     width:100%;
     font-family: 'Ubuntu', sans-serif;
-    background-image: url(../pic/leather.png);
+    background-image: url(../pic/bg2.jpeg);
 }
 
 header{
@@ -14,7 +14,8 @@ header{
 }
 
 header h1{
-    text-shadow: 0.1rem 0.1rem 1rem rgb(87, 85, 85);
+    text-shadow: 0.1rem 0.1rem 1rem rgb(252, 251, 251);
+    color:rgb(223, 219, 219);
 }
 
 .card{
@@ -143,7 +144,7 @@ header h1{
 }
 
 .textMsg2 span{
-    margin-left:8px;
+    margin-left:18px;
 }
 
 .btn-danger{
@@ -201,5 +202,9 @@ span{
 
     .textMsg2{
         text-align: center;
+    }
+
+    #btnReq{
+        margin-top:15px;
     }
 }
