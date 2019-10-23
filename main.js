@@ -5,9 +5,17 @@
 //firstly use dom to get the html objects
 // var isGen = confirm("Do you want me to generate a password for you?");
 
+var requirement = 0;
+
+var requireBox = document.querySelector(".textMsg");
+var requireBox2 = document.querySelector(".textMsg2");
+
 var btnGen = document.getElementById("btnGen");
 var btnCopy = document.getElementById("btnCopy");
 var btnCheck = document.getElementById("btnCheck");
+var btnReq = document.getElementById("btnReq");
+var btnClo = document.getElementById("btnClo");
+
 
 var boxMsg = document.getElementById("boxMsg");
 var boxMsg2 = document.getElementById("boxMsg2");
@@ -364,6 +372,33 @@ btnCopy.addEventListener("click", function(e){
 		// setTimeout(('boxMsg2.innerHTML = ""'),2000);
 		setTimeout(('boxMsg2.classList.add("invisible")'),2000);
 		boxMsg2.classList.remove("invisible");
+	}
+});
+
+// I am tring to add a box showing requirement
+btnReq.addEventListener("click", function(e){
+	if(requirement === 0){
+		requirement = 1;
+		requireBox.style.display = "flex";
+		requireBox2.style.display = "none";
+	}
+	else{
+		requirement = 0;
+		requireBox.style.display = "none";
+		requireBox2.style.display = "flex";
+	}
+});
+
+btnClo.addEventListener("click",function(e){
+	if(requirement === 0){
+		requirement = 1;
+		requireBox.style.display = "flex";
+		requireBox2.style.display = "none";
+	}
+	else{
+		requirement = 0;
+		requireBox.style.display = "none";
+		requireBox2.style.display = "flex";
 	}
 });
 

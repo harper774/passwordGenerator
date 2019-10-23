@@ -137,6 +137,10 @@ header h1{
     margin-left:4px;
 }
 
+.textMsg2 span{
+    margin-left:8px;
+}
+
 .btn-danger{
     background-color: rgb(236, 102, 122);
     border:1px solid rgb(240, 116, 134);
@@ -145,6 +149,15 @@ header h1{
 .btn-danger:hover{
     background-color: rgb(241, 82, 106);
     border:1px solid rgb(240, 116, 134);
+}
+
+.textMsg{
+    display:none;
+}
+
+#btnClo{
+    width:55px;
+    align-self: center;
 }
 
 span{
@@ -175,9 +188,13 @@ span{
     opacity:0;
 }
 
-@media screen and (max-width:640px){
+@media screen and (max-width:780px){
     .btn{
         margin:10px 20px;
         width:50%;  
+    }
+
+    .textMsg2{
+        text-align: center;
     }
 }
