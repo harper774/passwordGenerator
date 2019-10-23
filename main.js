@@ -171,7 +171,7 @@ function generatePassword(isLength) {
 
 	this.L = isLength;
 	if(L<8 || L>128 || num<1){
-		alert("Sorry! Please re-enter another number between 8 and 128 and tick at least one box!");
+		// alert("Sorry! Please re-enter another number between 8 and 128 and tick at least one box!");
 	}
 	else {
 		//switch num to determine the following 8 scenarios
@@ -314,7 +314,7 @@ function passwordCheck(userInput){
 	//using match to determine whether the password contains each charater set
 	//match will return null if there are no matching between the two
 	if(user === ""){
-		alert("Please input your password!");
+		// alert("Please input your password!");
 	}
 	else{
 		// if(user !== "" && (length<8 || length>128)){
