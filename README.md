@@ -20,4 +20,6 @@ they could click on genrate button to get the password
 
 After clicking on the copy button, whatever inside the textarea will be copied
 
-file:///.file/id=6571367.5265871
+I also add a requirement display box which could be hidden and opened with requirement button
+
+and closed by close button.
