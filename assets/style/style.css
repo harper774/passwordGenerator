@@ -4,6 +4,7 @@ body{
     background-color: rgb(240, 239, 239);
     width:100%;
     font-family: 'Ubuntu', sans-serif;
+    background-image: url(../pic/leather.png);
 }
 
 header{
