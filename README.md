@@ -20,3 +20,4 @@ they could click on genrate button to get the password
 
 After clicking on the copy button, whatever inside the textarea will be copied
 
+file:///.file/id=6571367.5265871
